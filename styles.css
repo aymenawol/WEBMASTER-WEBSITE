@@ -1,0 +1,203 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #2ecc71;
+    text-align: center;
+    width: 100%;
+    z-index: 2;
+    padding: 10px 0;
+    position: relative;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    z-index: 3;
+    padding: 10px;
+}
+/*make navigation header sticky to page*/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    background-color: #333;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    padding: 10px;
+    transition: color .2s ease-in-out;
+}
+
+nav a:hover {
+    color: #2ecc71;
+}
+
+nav ul li span {
+    color: #ffffff;
+    display: inline-block;
+    margin: 0 330px; /* rework title placement */
+}
+
+.hero {
+    background-image: url('blue-skye-windmill-solar-panel-clouds-istock-453911335.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 120px 0 475px;
+    margin: 0;
+    text-align: center;
+}
+
+.hero h2 {
+    margin-top: 10px;
+    font-size: 2.5em;
+    color: #ffffff; 
+    text-shadow: 1px 0px 0px hwb(0 0% 100% / 0.8); 
+}
+
+.hero span {
+    font-size: 1.15em;
+    color: #ffffff; 
+    text-shadow: 1px 0px 0px hwb(0 0% 100% / 0.8); 
+}
+
+
+
+.fade {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    animation: fade 2s ease-in-out infinite;
+}
+
+@keyframes fade {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    25%, 75% {
+        opacity: 1;
+    }
+}
+
+.main-content {
+    max-width: 75%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.info-card {
+    flex: 0 0 calc(33.3333% - 20px);
+    box-sizing: border-box;
+    background-color: #2ecc71;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.info-card:hover {
+    transform: scale(1.05);
+}
+
+.accordion {
+    cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    padding: 14px;
+    width: 97%;
+    text-align: left;
+    border: none;
+    outline: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease-in-out; 
+    margin-top: 20px;
+}
+
+.accordion:hover {
+    background-color: #2ecc71; 
+}
+
+.panel {
+    padding: 0 18px;
+    display: none;
+    background-color: #fff;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.interactive-section {
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.interactive-section.open {
+    display: block;
+}
+
+.interactive-section button {
+    padding: 10px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.interactive-section button:hover {
+    background-color: #1a8c5d; 
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em;
+    font-size: 12px;
+    clear: both;
+}
+
+/* responsive styles prob delete*/
+@media (max-width: 768px) {
+    .info-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
