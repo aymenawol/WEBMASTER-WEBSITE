@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green Energy</title>
+    <link rel="stylesheet" href="styles.css">
+   
+</head>
+<body>
+
+    <!-- nav links -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><span class="header-title">Title</span></li>
+    </ul>
+        </ul>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">nav2</a></li>
+            <li><a href="#">nav3</a></li>
+            <li><a href="#">nav4</a></li>
+        </ul>
+    </nav>
+</header> <!-- info -->
+    <div class="hero">
+        
+        <h2>Welcome to Sustainable Living</h2>
+        <p><span>Discover eco-friendly solutions for your home and contribute to a greener future</span></p>
+    </div>
+
+    <div class="main-content">
+        <h2>About Green Energy</h2>
+        <p>Learn about the importance of green energy and how it can positively impact the environment.</p>
+        
+        <h2 class="accordion">Basic Green Energy Solutions</h2>
+        <div class="panel">
+            <p>add info</p>
+        </div>
+        
+        <h2 class="accordion">Cost Information</h2>
+        <div class="panel">
+            <p>add info</p>
+        </div>
+
+        <h2 class="accordion">Tax Rebates and Incentives</h2>
+        <div class="panel">
+            <p>add info</p>
+        </div>
+
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>Energy-Efficient Appliances</h3>
+                <p>add info</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Solar Panel Installation</h3>
+                <p>add info</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Green Roof Solutions</h3>
+                <p>add info</p>
+            </div>
+
+            <div class="info-card">
+                <h3>something</h3>
+                <p>add info</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Wind Turbine Solutions</h3>
+                <p>add info</p>
+            </div>
+
+            <div class="info-card">
+                <h3>Carbon Offset Programs</h3>
+                <p>add info</p>
+            </div>
+        </div>
+
+        <h2 class="accordion">Advanced Green Energy Solutions</h2>
+        <div class="panel">
+            <p>add info</p>
+        </div>
+
+        <h2 class="accordion">Energy Consumption Monitoring</h2>
+        <div class="panel">
+            <p>tools and devices that help monitor energy usage</p>
+        </div>
+
+        <h2 class="accordion">Community Initiatives</h2>
+        <div class="panel">
+            <p>add info</p>
+        </div>
+        <br>
+
+        
+        <div class="panel interactive-section">
+            <p>Use our interactive calculator to estimate potential savings and environmental impact by implementing green energy solutions.</p>
+            <button id="calculatorButton">Open Calculator</button>
+            <div id="calculatorSection" style="display: none;">
+                <h2>Green Energy Calculator</h2>
+                <label for="electricityUsage">Monthly Electricity Usage (kWh):</label>
+                <input type="number" id="electricityUsage" required>
+
+                <label for="savingsPercentage">Estimated Savings Percentage:</label>
+                <input type="number" id="savingsPercentage" required>
+
+                <button type="button" onclick="calculateResults()">Calculate</button>
+                <button type="button" id="resetButton">Reset</button>
+
+                <div id="results"></div>
+            </div>
+        </div>
+
+        <!-- add more stuff here probably -->
+
+    </div>
+
+    <footer>
+        <p> Aymen Awol & Allan Ilano</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".accordion").click(function () { // make next element visibile
+            $(this).next(".panel").slideToggle("fast");
+        });
+
+        // calculator
+        var calculatorOpen = false;
+
+        $("#calculatorButton").click(function () {
+            
+            $("#calculatorSection").slideToggle("fast");
+
+            
+            if (calculatorOpen) {
+                $("#calculatorButton").text("Open Calculator");
+            } else {
+                $("#calculatorButton").text("Close Calculator");
+            }
+
+            // update status
+            calculatorOpen = !calculatorOpen;
+        });
+
+        //clear input n results
+        $("#resetButton").click(function () {
+            
+            $("#electricityUsage").val("");
+            $("#savingsPercentage").val("");
+
+            
+            document.getElementById('results').innerHTML = "";
+
+            
+            $("html, body").animate({ scrollTop: $("#calculatorSection").offset().top }, "slow");
+        });
+
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > $(".interactive-section").offset().top - $(window).height() / 2) {
+                $(".interactive-section").fadeIn();
+            }
+        });
+        //doesn't work rn
+        var stickyNavTop = $('nav').offset().top;
+        var stickyNav = function () {
+            var scrollTop = $(window).scrollTop();
+
+            if (scrollTop > stickyNavTop) {
+                $('nav').addClass('sticky');
+            } else {
+                $('nav').removeClass('sticky');
+            }
+        };
+
+        stickyNav();
+
+        $(window).scroll(function () {
+            stickyNav();
+        });
+            // gotta fix ugly fading issue n add more images to array
+        var images = [
+            'blue-skye-windmill-solar-panel-clouds-istock-453911335.jpeg',
+            '239643.jpg',
+            'solar-panels-roof-solar-cell.jpg',
+            'beautiful-alternative-energy-plant-with-solar-panels.jpg'
+        ];
+
+        var currentIndex = 0;
+
+        function showNextSlide() {
+            $('.hero').fadeOut('slow', function () {
+                $(this).css('background-image', 'url(' + images[currentIndex] + ')').fadeIn('slow');
+            });
+
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        setInterval(showNextSlide, 2000);
+    });
+
+    // Calculator Script
+    function calculateResults() {
+        const electricityUsage = parseFloat(document.getElementById('electricityUsage').value);
+        const savingsPercentage = parseFloat(document.getElementById('savingsPercentage').value);
+
+        if (isNaN(electricityUsage) || isNaN(savingsPercentage)) {
+            alert('Please enter valid numbers.');
+            return;
+        }
+
+        const savings = (electricityUsage *savingsPercentage) / 100; //maybe not right??
+        const environmentalImpact = electricityUsage - savings;
+            //could change units
+        const results = `
+            <h2>Results</h2> 
+            <p>Estimated Monthly Savings: ${savings.toFixed(2)}   kWh</p>
+            <p>Reduced Environmental Impact: ${environmentalImpact.toFixed(2)} kWh</p>
+        `;
+
+        document.getElementById('results').innerHTML = results;
+    }
+</script>
+
+    
+
+
+</body>
+</html>
