@@ -12,23 +12,44 @@
     <!-- nav links -->
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><span class="header-title">Title</span></li>
+            <li><a href="#" class="logo"><img src=""></a></li> <!-- nothing for right now -->
+            <li><span class="header-title">Green Energy Solutions</span></li>
     </ul>
         </ul>
         <ul>
+            <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
-            <li><a href="#">nav2</a></li>
-            <li><a href="#">nav3</a></li>
-            <li><a href="#">nav4</a></li>
+            <li><a href="#">Initiative</a></li>
+            <li><a href="#">Contact</a></li>
+            
         </ul>
     </nav>
 </header> <!-- info -->
-    <div class="hero">
-        
-        <h2>Welcome to Sustainable Living</h2>
-        <p><span>Discover eco-friendly solutions for your home and contribute to a greener future</span></p>
-    </div>
+
+
+<div class="hero">
+    <img src="red-zeppelin-UVGE-o757-g-unsplash.jpg" alt="Image 5" class="active">
+    <img src="blue-skye-windmill-solar-panel-clouds-istock-453911335.jpeg" alt="Image 1" >
+    <img src="eco-house.jpg" alt="Image 6">
+    <img src="solar-panels-roof-solar-cell.jpg" alt="Image 3">
+    <img src="ashes-sitoula-UfEyDdXlRp8-unsplash.jpg" alt="Image 7">
+    <img src="239643.jpg" alt="Image 2">
+    <img src="beautiful-alternative-energy-plant-with-solar-panels.jpg" alt="Image 4">
+
+    
+
+    
+
+    
+
+
+</div>
+
+    
+<div>
+    <h2 class="header1">Welcome to Sustainable Living</h2>
+    <p class="header2">Discover eco-friendly solutions for your home and contribute to a greener future</p>
+</div>
 
     <div class="main-content">
         <h2>About Green Energy</h2>
@@ -138,7 +159,7 @@
             $(this).next(".panel").slideToggle("fast");
         });
 
-        // calculator
+        
         var calculatorOpen = false;
 
         $("#calculatorButton").click(function () {
@@ -152,11 +173,11 @@
                 $("#calculatorButton").text("Close Calculator");
             }
 
-            // update status
+            
             calculatorOpen = !calculatorOpen;
         });
 
-        //clear input n results
+        //reset button
         $("#resetButton").click(function () {
             
             $("#electricityUsage").val("");
@@ -174,42 +195,21 @@
                 $(".interactive-section").fadeIn();
             }
         });
-        //doesn't work rn
-        var stickyNavTop = $('nav').offset().top;
-        var stickyNav = function () {
-            var scrollTop = $(window).scrollTop();
+        
 
-            if (scrollTop > stickyNavTop) {
-                $('nav').addClass('sticky');
-            } else {
-                $('nav').removeClass('sticky');
-            }
-        };
+        
+            //slideshow script
+            var images = $('.hero img');
+                var currentIndex = 0;
 
-        stickyNav();
+                function showNextSlide() {
+                    images.eq(currentIndex).removeClass('active');
+                    currentIndex = (currentIndex + 1) % images.length;
+                    images.eq(currentIndex).addClass('active');
+                }
 
-        $(window).scroll(function () {
-            stickyNav();
-        });
-            // gotta fix ugly fading issue n add more images to array
-        var images = [
-            'blue-skye-windmill-solar-panel-clouds-istock-453911335.jpeg',
-            '239643.jpg',
-            'solar-panels-roof-solar-cell.jpg',
-            'beautiful-alternative-energy-plant-with-solar-panels.jpg'
-        ];
+                setInterval(showNextSlide, 3000);
 
-        var currentIndex = 0;
-
-        function showNextSlide() {
-            $('.hero').fadeOut('slow', function () {
-                $(this).css('background-image', 'url(' + images[currentIndex] + ')').fadeIn('slow');
-            });
-
-            currentIndex = (currentIndex + 1) % images.length;
-        }
-
-        setInterval(showNextSlide, 2000);
     });
 
     // Calculator Script
@@ -222,17 +222,18 @@
             return;
         }
 
-        const savings = (electricityUsage *savingsPercentage) / 100; //maybe not right??
+        const savings = (electricityUsage * savingsPercentage) / 100; //maybe not right??
         const environmentalImpact = electricityUsage - savings;
             //could change units
         const results = `
             <h2>Results</h2> 
-            <p>Estimated Monthly Savings: ${savings.toFixed(2)}   kWh</p>
+            <p>Estimated Monthly Savings: ${savings.toFixed(2)} kWh</p>
             <p>Reduced Environmental Impact: ${environmentalImpact.toFixed(2)} kWh</p>
         `;
 
         document.getElementById('results').innerHTML = results;
     }
+    
 </script>
 
     
