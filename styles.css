@@ -5,31 +5,23 @@ body {
     box-sizing: border-box;
     line-height: 1.6;
     background-color: #f4f4f4;
+    overflow-x: hidden; /* prevent horizontal scrolling */
 }
 
-header {
-    background-color: #333;
-    color: #2ecc71;
-    text-align: center;
-    width: 100%;
-    z-index: 2;
-    padding: 10px 0;
-    position: relative;
-}
-
+/* improved navbar styles */
 nav {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
-    z-index: 3;
-    padding: 10px;
+    background-color: #333; 
+    z-index: 10;
+    padding: 10px 20px; 
 }
-/*make navigation header sticky to page*/
+
 nav ul {
     list-style-type: none;
     margin: 0;
@@ -41,75 +33,115 @@ nav ul {
 
 nav ul li {
     display: inline;
-    margin-right: 20px;
+    margin-right: 80px; 
 }
 
 nav a {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
-    padding: 10px;
-    transition: color .2s ease-in-out;
+    padding: 2px;
+    transition: color 0.2s ease-in-out;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px; 
 }
 
 nav a:hover {
-    color: #2ecc71;
+    color: #1a8c5d; 
+}
+/* placehodler for a clickable logo */
+.logo img {
+    height: 40px;
+    margin-left: 20px; 
 }
 
-nav ul li span {
+.header-title {
+    font-size: 1.5em; 
+    color: #fff;
+    
+    
+}
+
+/* sticky navbar styles */
+nav.sticky {
+    position: fixed;
+    background-color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* header styles */
+.header1, .header2 {
+    text-align: left;
+    position: absolute;
+    left: 52%;
+    transform: translateX(-50%);
+    width: 100%;
+    font-size: 3.5em;
     color: #ffffff;
-    display: inline-block;
-    margin: 0 330px; /* rework title placement */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 3; /* text above overlay */
 }
 
+.header1 {
+    top: 320px;
+}
+
+.header2 {
+    top: 80px;
+    margin-top: 400px;
+    font-size: 1.5em;
+    color: #ffffff;
+    margin-left: 5px;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    z-index: 3; 
+}
+
+/* hero images styles */
 .hero {
-    background-image: url('blue-skye-windmill-solar-panel-clouds-istock-453911335.jpeg');
+    position: relative;
+    overflow: hidden;
     background-size: cover;
     background-position: center;
     color: #fff;
-    padding: 120px 0 475px;
+    padding: 200px 0 720px;
     margin: 0;
     text-align: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
-.hero h2 {
-    margin-top: 10px;
-    font-size: 2.5em;
-    color: #ffffff; 
-    text-shadow: 1px 0px 0px hwb(0 0% 100% / 0.8); 
+.hero img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw; /* cover the full viewport width */
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 1;
 }
 
-.hero span {
-    font-size: 1.15em;
-    color: #ffffff; 
-    text-shadow: 1px 0px 0px hwb(0 0% 100% / 0.8); 
+.hero img.active {
+    opacity: 1;
 }
 
-
-
-.fade {
-    display: none;
+/* overlay styles */
+.hero::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover;
-    animation: fade 2s ease-in-out infinite;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+    z-index: 2;
 }
 
-@keyframes fade {
-    0%, 100% {
-        opacity: 0.4;
-    }
-    25%, 75% {
-        opacity: 1;
-    }
-}
-
+/* main content styles */
 .main-content {
-    max-width: 75%;
-    margin: 20px auto;
+    max-width: 1800px; 
+    margin: 20px auto; 
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -137,6 +169,7 @@ nav ul li span {
     transform: scale(1.05);
 }
 
+/* accordion styles for main content */
 .accordion {
     cursor: pointer;
     background-color: #333;
@@ -164,6 +197,7 @@ nav ul li span {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* interactive section styles */
 .interactive-section {
     text-align: center;
     margin-top: 20px;
@@ -186,18 +220,38 @@ nav ul li span {
     background-color: #1a8c5d; 
 }
 
+
+/* footer styles */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 1em;
     font-size: 12px;
-    clear: both;
+    width: 100%; /* Set the width to 100% */
 }
 
-/* responsive styles prob delete*/
+/* responsive styles */
 @media (max-width: 768px) {
     .info-card {
         flex: 0 0 calc(50% - 20px);
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul li {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    .logo img {
+        margin-left: 0;
+    }
+
+    .header-title {
+        margin-right: 0;
     }
 }
