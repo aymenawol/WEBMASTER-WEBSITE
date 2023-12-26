@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins','Arial', sans-serif; /*poppins font be poppin*/
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -35,19 +35,24 @@ nav ul li {
     display: inline;
     margin-right: 80px; 
 }
-
-nav a {
+/*this was originally nav a but I made a new class for it for cooler nav bar purposes*/
+.menu-item {
     text-decoration: none;
     color: #fff;
     font-weight: bold;
     padding: 2px;
-    transition: color 0.2s ease-in-out;
+    transition: color 0.5s ease-in-out, opacity 0.5s ease-in-out;
     font-family: 'Arial', sans-serif;
     font-size: 16px; 
 }
-
-nav a:hover {
-    color: #1a8c5d; 
+#menu-items:hover .menu-item {
+    opacity:0.3;
+    
+}
+#menu-items:hover .menu-item:hover {
+    color: #2ecc71;
+    opacity: 1;
+    
 }
 /* placehodler for a clickable logo */
 .logo img {
